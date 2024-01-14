@@ -5,103 +5,150 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mel-rhay <mel-rhay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/13 21:19:23 by mel-rhay          #+#    #+#             */
-/*   Updated: 2024/01/14 01:36:38 by mel-rhay         ###   ########.fr       */
+/*   Created: 2024/01/14 17:34:02 by mel-rhay          #+#    #+#             */
+/*   Updated: 2024/01/14 18:44:06 by mel-rhay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void sort_three(t_stack **a, t_stack **b)
+int	get_chunk_size(int stack_size)
 {
-	if (is_stack_sorted(*a) == 1)
-		return ;
-	if ((*a)->data > (*a)->next->data && (*a)->data < (*a)->next->next->data)
-		sa(a, b);
-	else if ((*a)->data > (*a)->next->data && (*a)->data > (*a)->next->next->data)
+	int chunk_size;
+
+	chunk_size = stack_size / 4;
+	if (stack_size % 4 != 0)
+		chunk_size++;
+	return (chunk_size);
+}
+
+void	make_chunks(t_stack *a, t_stack *b, int chunk_size, int *sorted_array)
+{
+	// t_stack *tmp;
+
+	// tmp = a;
+	// while (tmp)
+	// {
+	// 	if (tmp->chunk)
+	// 		tmp->chunk = 0;
+	// 	tmp = tmp->next;
+	// }
+	// tmp = a;
+	// while (chunk_size > 0)
+	// {
+	// 	tmp->chunk = 1;
+	// 	tmp = tmp->next;
+	// 	chunk_size--;
+	// }
+}
+
+void	print_chunks(t_stack *a)
+{
+	t_stack *tmp;
+
+	tmp = a;
+	while (tmp && tmp->chunk)
 	{
-		if ((*a)->next->data < (*a)->next->next->data)
-			ra(a, b);
-		else
+		printf("data: %d, chunk: %d\n", tmp->data, tmp->chunk);
+		tmp = tmp->next;
+	}
+}
+
+void	sort_int_tab(int *tab, int size)
+{
+	int i;
+	int j;
+	int tmp;
+
+	i = 0;
+	j = 0;
+	tmp = 0;
+	while (i < size)
+	{
+		j = i + 1;
+		while (j < size)
 		{
-			ra(a, b);
-			sa(a, b);
+			if (tab[j] < tab[i])
+			{
+				tmp = tab[j];
+				tab[j] = tab[i];
+				tab[i] = tmp;
+			}
+			j++;
 		}
-	}
-	else if ((*a)->data < (*a)->next->data && (*a)->data > (*a)->next->next->data)
-		rra(a, b);
-	else if ((*a)->data < (*a)->next->data && (*a)->data < (*a)->next->next->data)
-	{
-		ra(a, b);
-		sa(a, b);
-		rra(a, b);
+		i++;
 	}
 }
 
-int	ft_find_min(t_stack *stack, int *min2)
+int	*stack_to_array(t_stack *a, int size)
 {
-	int	min;
-
-	if (min2 && *min2 && *min2 == stack->data)
-		stack = stack->next;
-	min = stack->data;
-	while (stack)
-	{
-		if (stack->data < min && (!min2 || stack->data != *min2))
-			min = stack->data;
-		stack = stack->next;
-	}
-	return (min);
-}
-
-int	ft_find_max(t_stack *stack)
-{
-	int	max;
-
-	max = stack->data;
-	while (stack)
-	{
-		if (stack->data > max)
-			max = stack->data;
-		stack = stack->next;
-	}
-	return (max);
-}
-
-void	sort_five(t_stack **a, t_stack **b)
-{
-	int		min;
-	int		min2;
-	int 	found_both;
+	int		*sorted_array;
+	int		i;
 	t_stack	*tmp;
 
-	min = ft_find_min(*a, NULL);
-	min2 = ft_find_min(*a, &min);
-	// printf("min = %d\n", min);
-	// printf("min2 = %d\n", min2);
-	found_both = 0;
-	while (found_both < 2)
+	i = 0;
+	tmp = a;
+	sorted_array = malloc(sizeof(int) * size);
+	while (tmp)
 	{
-		if ((*a)->data == min)
+		sorted_array[i] = tmp->data;
+		tmp = tmp->next;
+		i++;
+	}
+	sort_int_tab(sorted_array, size);
+	return (sorted_array);
+}
+
+void	move_chunks(t_stack **a, int chunk_size)
+{
+	t_stack *tmp;
+
+	tmp = *a;
+	while (tmp->under_chunk)
+		tmp = tmp->next;
+	tmp->under_chunk = 1;
+	tmp->chunk = 0;
+	while (chunk_size > 0)
+	{
+		if (!tmp->next)
+			return ;
+		tmp = tmp->next;
+	}
+	tmp->chunk = 1;
+}
+
+void	sort(t_stack **a, t_stack **b, int size)
+{
+	int chunk_size;
+	int *sorted_array;
+
+	chunk_size = get_chunk_size(size);
+	// printf("chunk_size: %d\n", chunk_size);
+	// print_chunks(*a);
+	sorted_array = stack_to_array(*a, size);
+	make_chunks(*a, *b, chunk_size, sorted_array);
+	while (!(is_stack_sorted(*a)))
+	{
+		if ((*a)->chunk)
 		{
+			move_chunks(a, chunk_size);
 			pb(a, b);
-			found_both++;
+			if ((*b)->next && (*b)->data < (*b)->next->data)
+				rb(a, b);
 		}
-		else if ((*a)->data == min2)
+		else if ((*a)->under_chunk)
 		{
+			move_chunks(a, chunk_size);
 			pb(a, b);
-			found_both++;
+			rb(a, b);
 		}
 		else
 			ra(a, b);
+		// printf("Stack A:\n");
+		// ft_print_list(*a);
+		// printf("Stack B:\n");
+		// ft_print_list(*b);
+		// printf("------------------\n");
 	}
-	// pb(a, b);
-	// while ((*a)->data != min2)
-	// 	ra(a, b);
-	// pb(a, b);
-	sort_three(a, b);
-	pa(a, b);
-	pa(a, b);
-	if ((*a)->data > (*a)->next->data)
-		sa(a, b);
+	free(sorted_array);
 }

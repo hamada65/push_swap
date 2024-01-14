@@ -6,7 +6,7 @@
 /*   By: mel-rhay <mel-rhay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 18:50:27 by mel-rhay          #+#    #+#             */
-/*   Updated: 2024/01/14 01:36:12 by mel-rhay         ###   ########.fr       */
+/*   Updated: 2024/01/14 18:22:01 by mel-rhay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ int main(int ac, char **av)
 		stack_a = check_args(ac, av);
 		if (is_stack_sorted(stack_a) == 1)
 		{
-			printf("Stack is already sorted\n");
 			ft_clear_stack(&stack_a);
 			return (0);
 		}
@@ -47,16 +46,16 @@ int main(int ac, char **av)
 			sa(&stack_a, &stack_b);
 		if (size == 3)
 			sort_three(&stack_a, &stack_b);
-		else if (size == 4 || size == 5)
+		else if (size == 4)
+			sort_four(&stack_a, &stack_b);
+		else if (size == 5)
 			sort_five(&stack_a, &stack_b);
-		// else if (size == 5)
-		// 	sort_five(&stack_a, &stack_b);
-		// else
-		// 	sort(&stack_a, &stack_b);
-		// printf("Stack A:\n");
-		// ft_print_list(stack_a);
-		// printf("Stack B:\n");
-		// ft_print_list(stack_b);
+		else
+			sort(&stack_a, &stack_b, size);
+		printf("Stack A:\n");
+		ft_print_list(stack_a);
+		printf("Stack B:\n");
+		ft_print_list(stack_b);
 		ft_clear_stack(&stack_a);
 		ft_clear_stack(&stack_b);
 	}

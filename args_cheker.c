@@ -6,7 +6,7 @@
 /*   By: mel-rhay <mel-rhay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 18:57:39 by mel-rhay          #+#    #+#             */
-/*   Updated: 2024/01/13 22:59:58 by mel-rhay         ###   ########.fr       */
+/*   Updated: 2024/01/14 18:19:37 by mel-rhay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ t_stack	*ft_nb_new(int nb)
 	new->next = NULL;
 	new->prev = NULL;
 	new->chunk = 0;
+	new->under_chunk = 0;
 	return (new);
 }
 

@@ -2,6 +2,7 @@ SRCS =  push_swap.c \
 		args_cheker.c \
 		is_int.c \
 		push_swap_utils.c \
+		stack_sort_short.c \
 		stack_sort.c \
 		srcs/libft/ft_isalpha.c srcs/libft/ft_isdigit.c srcs/libft/ft_isalnum.c srcs/libft/ft_isascii.c srcs/libft/ft_isprint.c srcs/libft/ft_strlen.c \
 		srcs/libft/ft_toupper.c srcs/libft/ft_tolower.c srcs/libft/ft_strchr.c srcs/libft/ft_strrchr.c srcs/libft/ft_strncmp.c \
