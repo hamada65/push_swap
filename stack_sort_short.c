@@ -12,13 +12,14 @@
 
 #include "push_swap.h"
 
-void sort_three(t_stack **a, t_stack **b)
+void	sort_three(t_stack **a, t_stack **b)
 {
 	if (is_stack_sorted(*a) == 1)
 		return ;
 	if ((*a)->data > (*a)->next->data && (*a)->data < (*a)->next->next->data)
 		sa(a, b);
-	else if ((*a)->data > (*a)->next->data && (*a)->data > (*a)->next->next->data)
+	else if ((*a)->data > (*a)->next->data
+		&& (*a)->data > (*a)->next->next->data)
 	{
 		if ((*a)->next->data < (*a)->next->next->data)
 			ra(a, b);
@@ -28,9 +29,11 @@ void sort_three(t_stack **a, t_stack **b)
 			sa(a, b);
 		}
 	}
-	else if ((*a)->data < (*a)->next->data && (*a)->data > (*a)->next->next->data)
+	else if ((*a)->data < (*a)->next->data
+		&& (*a)->data > (*a)->next->next->data)
 		rra(a, b);
-	else if ((*a)->data < (*a)->next->data && (*a)->data < (*a)->next->next->data)
+	else if ((*a)->data < (*a)->next->data
+		&& (*a)->data < (*a)->next->next->data)
 	{
 		ra(a, b);
 		sa(a, b);
@@ -54,12 +57,11 @@ int	ft_find_min(t_stack *stack, int *min2)
 	return (min);
 }
 
-
 void	sort_five(t_stack **a, t_stack **b)
 {
 	int		min;
 	int		min2;
-	int 	found_both;
+	int		found_both;
 	t_stack	*tmp;
 
 	min = ft_find_min(*a, NULL);
@@ -89,8 +91,8 @@ void	sort_five(t_stack **a, t_stack **b)
 
 void	sort_four(t_stack **a, t_stack **b)
 {
-	int		min;
-	t_stack	*tmp;
+	int min;
+	t_stack *tmp;
 
 	min = ft_find_min(*a, NULL);
 	while ((*a)->data != min)

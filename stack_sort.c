@@ -14,7 +14,6 @@
 
 int	get_chunk_size(int stack_size)
 {
-	
 	if (stack_size >= 6 && stack_size <= 16)
 		return (3);
 	else if (stack_size <= 100)
@@ -24,12 +23,11 @@ int	get_chunk_size(int stack_size)
 	return (45);
 }
 
-
 void	sort_int_tab(int *tab, int size)
 {
-	int i;
-	int j;
-	int tmp;
+	int	i;
+	int	j;
+	int	tmp;
 
 	i = 0;
 	j = 0;
@@ -96,8 +94,8 @@ int	ft_find_max(t_stack *stack)
 
 void	make_max_at_top(t_stack **a, t_stack **b, int b_size)
 {
-	int	max;
-	t_stack *tmp;
+	int		max;
+	t_stack	*tmp;
 
 	max = ft_find_max(*b);
 	tmp = *b;
@@ -105,17 +103,17 @@ void	make_max_at_top(t_stack **a, t_stack **b, int b_size)
 	{
 		if (tmp->data == max)
 		{
-			if (tmp->index > b_size/2)
+			if (tmp->index > b_size / 2)
 			{
 				while ((*b)->data != max)
 					rrb(a, b);
-				break;
+				break ;
 			}
 			else
 			{
 				while ((*b)->data != max)
 					rb(a, b);
-				break;
+				break ;
 			}
 		}
 		tmp = tmp->next;
@@ -139,10 +137,10 @@ void	update_index(t_stack **b)
 
 void	sort(t_stack **a, t_stack **b, int size)
 {
-	int	chunk_size;
-	int	*sorted_array;
-	int	start;
-	int	end;
+	int chunk_size;
+	int *sorted_array;
+	int start;
+	int end;
 
 	chunk_size = get_chunk_size(size);
 	sorted_array = stack_to_array(*a, size);
@@ -161,7 +159,8 @@ void	sort(t_stack **a, t_stack **b, int size)
 			start++;
 			end++;
 		}
-		else if ((*a)->data >= sorted_array[start] && (*a)->data <= sorted_array[end])
+		else if ((*a)->data >= sorted_array[start]
+			&& (*a)->data <= sorted_array[end])
 		{
 			pb(a, b);
 			if ((*b)->next && (*b)->data < (*b)->next->data)
@@ -170,7 +169,7 @@ void	sort(t_stack **a, t_stack **b, int size)
 			end++;
 		}
 		else
-			ra(a, b);	
+			ra(a, b);
 	}
 	while ((*b))
 	{

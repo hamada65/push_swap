@@ -6,7 +6,7 @@
 /*   By: mel-rhay <mel-rhay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 18:50:27 by mel-rhay          #+#    #+#             */
-/*   Updated: 2024/01/15 18:00:09 by mel-rhay         ###   ########.fr       */
+/*   Updated: 2024/01/15 23:07:11 by mel-rhay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ int	is_stack_sorted(t_stack *stack)
 	return (1);
 }
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
-	t_stack *stack_a;
-	t_stack *stack_b;
+	t_stack	*stack_a;
+	t_stack	*stack_b;
 	int		size;
 
 	stack_b = NULL;
@@ -58,11 +58,10 @@ int main(int ac, char **av)
 		// printf("Stack B:\n");
 		// ft_print_list(stack_b);
 		ft_clear_stack(&stack_a);
-		ft_clear_stack(&stack_b);
 	}
 	else
 	{
-		// ft_putstr_fd("Error\nMissing Args\n", 2);
+		ft_putstr_fd("Error\n", 2);
 	}
 	return (0);
 }
