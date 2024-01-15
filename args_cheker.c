@@ -6,7 +6,7 @@
 /*   By: mel-rhay <mel-rhay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 18:57:39 by mel-rhay          #+#    #+#             */
-/*   Updated: 2024/01/15 18:42:01 by mel-rhay         ###   ########.fr       */
+/*   Updated: 2024/01/15 21:28:35 by mel-rhay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,7 +150,7 @@ t_stack	*check_args(int ac, char **av)
 			j = 0;
 			while (tmp[j])
 			{
-				if (is_int(tmp[j]) == 0)
+				if (is_int(tmp[j]) == 0 || ft_strncmp(tmp[j], "+", 2) == 0 || ft_strncmp(tmp[j], "-", 2) == 0)
 				{
 					// ft_putstr_fd("Error\nNot Integers\n", 2);
 					free_2d_array(tmp);

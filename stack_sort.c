@@ -6,7 +6,7 @@
 /*   By: mel-rhay <mel-rhay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 17:34:02 by mel-rhay          #+#    #+#             */
-/*   Updated: 2024/01/15 20:09:03 by mel-rhay         ###   ########.fr       */
+/*   Updated: 2024/01/15 21:19:04 by mel-rhay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,11 +109,13 @@ void	make_max_at_top(t_stack **a, t_stack **b, int b_size)
 			{
 				while ((*b)->data != max)
 					rrb(a, b);
+				break;
 			}
 			else
 			{
 				while ((*b)->data != max)
 					rb(a, b);
+				break;
 			}
 		}
 		tmp = tmp->next;
@@ -148,22 +150,22 @@ void	sort(t_stack **a, t_stack **b, int size)
 	end = chunk_size - 1;
 	while ((*a))
 	{
-		if (start >= end)
-			start--;
 		if (end >= size)
 			end--;
-		if ((*a)->data <= sorted_array[start])
+		if (start >= end)
+			start--;
+		if ((*a)->data < sorted_array[start])
 		{
 			pb(a, b);
 			rb(a, b);
 			start++;
 			end++;
 		}
-		else if ((*a)->data > sorted_array[start] && (*a)->data <= sorted_array[end])
+		else if ((*a)->data >= sorted_array[start] && (*a)->data <= sorted_array[end])
 		{
 			pb(a, b);
 			if ((*b)->next && (*b)->data < (*b)->next->data)
-				rb(a, b);
+				sb(a, b);
 			start++;
 			end++;
 		}
