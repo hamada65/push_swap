@@ -6,7 +6,7 @@
 /*   By: mel-rhay <mel-rhay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/13 21:19:23 by mel-rhay          #+#    #+#             */
-/*   Updated: 2024/01/14 17:33:45 by mel-rhay         ###   ########.fr       */
+/*   Updated: 2024/01/15 17:54:23 by mel-rhay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,19 +54,6 @@ int	ft_find_min(t_stack *stack, int *min2)
 	return (min);
 }
 
-int	ft_find_max(t_stack *stack)
-{
-	int	max;
-
-	max = stack->data;
-	while (stack)
-	{
-		if (stack->data > max)
-			max = stack->data;
-		stack = stack->next;
-	}
-	return (max);
-}
 
 void	sort_five(t_stack **a, t_stack **b)
 {

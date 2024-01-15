@@ -2,5 +2,6 @@
 	"files.associations": {
 		"stdlib.h": "c",
 		"push_swap.h": "c"
-	}
+	},
+	"C_Cpp.errorSquiggles": "disabled"
 }

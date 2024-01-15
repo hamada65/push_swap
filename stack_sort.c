@@ -6,7 +6,7 @@
 /*   By: mel-rhay <mel-rhay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 17:34:02 by mel-rhay          #+#    #+#             */
-/*   Updated: 2024/01/14 18:44:06 by mel-rhay         ###   ########.fr       */
+/*   Updated: 2024/01/15 20:09:03 by mel-rhay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,45 +14,16 @@
 
 int	get_chunk_size(int stack_size)
 {
-	int chunk_size;
-
-	chunk_size = stack_size / 4;
-	if (stack_size % 4 != 0)
-		chunk_size++;
-	return (chunk_size);
+	
+	if (stack_size >= 6 && stack_size <= 16)
+		return (3);
+	else if (stack_size <= 100)
+		return (13);
+	else if (stack_size <= 500)
+		return (35);
+	return (45);
 }
 
-void	make_chunks(t_stack *a, t_stack *b, int chunk_size, int *sorted_array)
-{
-	// t_stack *tmp;
-
-	// tmp = a;
-	// while (tmp)
-	// {
-	// 	if (tmp->chunk)
-	// 		tmp->chunk = 0;
-	// 	tmp = tmp->next;
-	// }
-	// tmp = a;
-	// while (chunk_size > 0)
-	// {
-	// 	tmp->chunk = 1;
-	// 	tmp = tmp->next;
-	// 	chunk_size--;
-	// }
-}
-
-void	print_chunks(t_stack *a)
-{
-	t_stack *tmp;
-
-	tmp = a;
-	while (tmp && tmp->chunk)
-	{
-		printf("data: %d, chunk: %d\n", tmp->data, tmp->chunk);
-		tmp = tmp->next;
-	}
-}
 
 void	sort_int_tab(int *tab, int size)
 {
@@ -99,56 +70,111 @@ int	*stack_to_array(t_stack *a, int size)
 	return (sorted_array);
 }
 
-void	move_chunks(t_stack **a, int chunk_size)
+int	ft_stack_last(t_stack *stack)
 {
+	t_stack	*tmp;
+
+	tmp = stack;
+	while (tmp->next)
+		tmp = tmp->next;
+	return (tmp->data);
+}
+
+int	ft_find_max(t_stack *stack)
+{
+	int	max;
+
+	max = stack->data;
+	while (stack)
+	{
+		if (stack->data > max)
+			max = stack->data;
+		stack = stack->next;
+	}
+	return (max);
+}
+
+void	make_max_at_top(t_stack **a, t_stack **b, int b_size)
+{
+	int	max;
 	t_stack *tmp;
 
-	tmp = *a;
-	while (tmp->under_chunk)
-		tmp = tmp->next;
-	tmp->under_chunk = 1;
-	tmp->chunk = 0;
-	while (chunk_size > 0)
+	max = ft_find_max(*b);
+	tmp = *b;
+	while (tmp)
 	{
-		if (!tmp->next)
-			return ;
+		if (tmp->data == max)
+		{
+			if (tmp->index > b_size/2)
+			{
+				while ((*b)->data != max)
+					rrb(a, b);
+			}
+			else
+			{
+				while ((*b)->data != max)
+					rb(a, b);
+			}
+		}
 		tmp = tmp->next;
 	}
-	tmp->chunk = 1;
+}
+
+void	update_index(t_stack **b)
+{
+	t_stack	*tmp;
+	int		i;
+
+	i = 0;
+	tmp = *b;
+	while (tmp)
+	{
+		tmp->index = i;
+		tmp = tmp->next;
+		i++;
+	}
 }
 
 void	sort(t_stack **a, t_stack **b, int size)
 {
-	int chunk_size;
-	int *sorted_array;
+	int	chunk_size;
+	int	*sorted_array;
+	int	start;
+	int	end;
 
 	chunk_size = get_chunk_size(size);
-	// printf("chunk_size: %d\n", chunk_size);
-	// print_chunks(*a);
 	sorted_array = stack_to_array(*a, size);
-	make_chunks(*a, *b, chunk_size, sorted_array);
-	while (!(is_stack_sorted(*a)))
+	start = 0;
+	end = chunk_size - 1;
+	while ((*a))
 	{
-		if ((*a)->chunk)
+		if (start >= end)
+			start--;
+		if (end >= size)
+			end--;
+		if ((*a)->data <= sorted_array[start])
 		{
-			move_chunks(a, chunk_size);
+			pb(a, b);
+			rb(a, b);
+			start++;
+			end++;
+		}
+		else if ((*a)->data > sorted_array[start] && (*a)->data <= sorted_array[end])
+		{
 			pb(a, b);
 			if ((*b)->next && (*b)->data < (*b)->next->data)
 				rb(a, b);
-		}
-		else if ((*a)->under_chunk)
-		{
-			move_chunks(a, chunk_size);
-			pb(a, b);
-			rb(a, b);
+			start++;
+			end++;
 		}
 		else
-			ra(a, b);
-		// printf("Stack A:\n");
-		// ft_print_list(*a);
-		// printf("Stack B:\n");
-		// ft_print_list(*b);
-		// printf("------------------\n");
+			ra(a, b);	
+	}
+	while ((*b))
+	{
+		update_index(b);
+		make_max_at_top(a, b, ft_stack_size(*b));
+		pa(a, b);
 	}
 	free(sorted_array);
 }

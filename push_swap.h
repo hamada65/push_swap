@@ -6,7 +6,7 @@
 /*   By: mel-rhay <mel-rhay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 18:50:40 by mel-rhay          #+#    #+#             */
-/*   Updated: 2024/01/14 18:23:23 by mel-rhay         ###   ########.fr       */
+/*   Updated: 2024/01/15 18:39:57 by mel-rhay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,7 @@
 typedef struct	s_stack
 {
 	int				data;
-	int				chunk;
-	int				under_chunk;
+	int				index;
 	struct s_stack	*next;
 	struct s_stack	*prev;
 }				t_stack;

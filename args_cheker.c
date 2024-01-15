@@ -6,7 +6,7 @@
 /*   By: mel-rhay <mel-rhay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 18:57:39 by mel-rhay          #+#    #+#             */
-/*   Updated: 2024/01/14 18:19:37 by mel-rhay         ###   ########.fr       */
+/*   Updated: 2024/01/15 18:42:01 by mel-rhay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	check_digits(int ac, char **av)
 		{
 			if (av[i][j] != ' ' && av[i][j] != '+' && av[i][j] != '-' && ft_isdigit(av[i][j]) == 0)
 			{
-				ft_putstr_fd("Error\n", 2);
+				// ft_putstr_fd("Error\n", 2);
 				exit(1);
 			}
 			j++;
@@ -98,8 +98,6 @@ t_stack	*ft_nb_new(int nb)
 	new->data = nb;
 	new->next = NULL;
 	new->prev = NULL;
-	new->chunk = 0;
-	new->under_chunk = 0;
 	return (new);
 }
 
@@ -144,7 +142,7 @@ t_stack	*check_args(int ac, char **av)
 		{
 			if (ft_strlen(av[i]) == 0)
 			{
-				ft_putstr_fd("Error\nEmpty String\n", 2);
+				// ft_putstr_fd("Error\nEmpty String\n", 2);
 				ft_clear_stack(&stack_a);
 				exit(1);
 			}
@@ -154,7 +152,7 @@ t_stack	*check_args(int ac, char **av)
 			{
 				if (is_int(tmp[j]) == 0)
 				{
-					ft_putstr_fd("Error\nNot Integers\n", 2);
+					// ft_putstr_fd("Error\nNot Integers\n", 2);
 					free_2d_array(tmp);
 					ft_clear_stack(&stack_a);
 					exit(1);
@@ -168,7 +166,7 @@ t_stack	*check_args(int ac, char **av)
 	}
 	if (check_duplicates(stack_a))
 	{
-		ft_putstr_fd("Error\nDuplicated Integer", 2);
+		// ft_putstr_fd("Error\nDuplicated Integer", 2);
 		ft_clear_stack(&stack_a);
 		exit(1);
 	}

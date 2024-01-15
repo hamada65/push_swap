@@ -19,7 +19,7 @@ NAME_BONUS = push_swap_bonus
 OBJS = ${SRCS:.c=.o}
 OBJS_BONUS = ${SRCS_BONUS:.c=.o}
 CC = cc
-CFLAGS = -fsanitize=address
+CFLAGS = #-fsanitize=address
 RM = rm -f
 
 all: ${NAME}

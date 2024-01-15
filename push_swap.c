@@ -6,7 +6,7 @@
 /*   By: mel-rhay <mel-rhay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 18:50:27 by mel-rhay          #+#    #+#             */
-/*   Updated: 2024/01/14 18:22:01 by mel-rhay         ###   ########.fr       */
+/*   Updated: 2024/01/15 18:00:09 by mel-rhay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	is_stack_sorted(t_stack *stack)
 	t_stack	*tmp;
 
 	tmp = stack;
-	while (tmp->next)
+	while (tmp && tmp->next)
 	{
 		if (tmp->data > tmp->next->data)
 			return (0);
@@ -42,6 +42,7 @@ int main(int ac, char **av)
 			return (0);
 		}
 		size = ft_stack_size(stack_a);
+		// printf("size = %d\n", size);
 		if (size == 2)
 			sa(&stack_a, &stack_b);
 		if (size == 3)
@@ -52,16 +53,16 @@ int main(int ac, char **av)
 			sort_five(&stack_a, &stack_b);
 		else
 			sort(&stack_a, &stack_b, size);
-		printf("Stack A:\n");
-		ft_print_list(stack_a);
-		printf("Stack B:\n");
-		ft_print_list(stack_b);
+		// printf("Stack A:\n");
+		// ft_print_list(stack_a);
+		// printf("Stack B:\n");
+		// ft_print_list(stack_b);
 		ft_clear_stack(&stack_a);
 		ft_clear_stack(&stack_b);
 	}
 	else
 	{
-		ft_putstr_fd("Error\nMissing Args\n", 2);
+		// ft_putstr_fd("Error\nMissing Args\n", 2);
 	}
 	return (0);
 }
