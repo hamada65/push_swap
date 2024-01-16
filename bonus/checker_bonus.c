@@ -6,7 +6,7 @@
 /*   By: mel-rhay <mel-rhay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 23:06:09 by mel-rhay          #+#    #+#             */
-/*   Updated: 2024/01/15 23:40:50 by mel-rhay         ###   ########.fr       */
+/*   Updated: 2024/01/16 20:50:00 by mel-rhay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_start_reading(t_stack **a, t_stack **b)
 	char *str;
 	char *tmp; 
 
-	str = get_next_line(1);
+	str = get_next_line(0);
 	tmp = ft_strtrim(str, "\n");
 	free(str);
 	str = tmp;
@@ -54,7 +54,7 @@ void	ft_start_reading(t_stack **a, t_stack **b)
 			exit(1);
 		}
 		free(str);
-		str = get_next_line(1);
+		str = get_next_line(0);
 		if (str)
 		{
 			tmp = ft_strtrim(str, "\n");

@@ -6,7 +6,7 @@
 /*   By: mel-rhay <mel-rhay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 18:50:27 by mel-rhay          #+#    #+#             */
-/*   Updated: 2024/01/15 23:07:11 by mel-rhay         ###   ########.fr       */
+/*   Updated: 2024/01/16 20:06:16 by mel-rhay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ int	main(int ac, char **av)
 			return (0);
 		}
 		size = ft_stack_size(stack_a);
-		// printf("size = %d\n", size);
 		if (size == 2)
 			sa(&stack_a, &stack_b);
 		if (size == 3)
@@ -53,10 +52,6 @@ int	main(int ac, char **av)
 			sort_five(&stack_a, &stack_b);
 		else
 			sort(&stack_a, &stack_b, size);
-		// printf("Stack A:\n");
-		// ft_print_list(stack_a);
-		// printf("Stack B:\n");
-		// ft_print_list(stack_b);
 		ft_clear_stack(&stack_a);
 	}
 	else

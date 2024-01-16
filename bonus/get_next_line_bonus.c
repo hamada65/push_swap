@@ -6,7 +6,7 @@
 /*   By: mel-rhay <mel-rhay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 15:45:49 by mel-rhay          #+#    #+#             */
-/*   Updated: 2024/01/15 23:31:01 by mel-rhay         ###   ########.fr       */
+/*   Updated: 2024/01/16 20:06:11 by mel-rhay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ void	add_node(t_lst **lst, char *buff)
 	t_lst	*new_node;
 	t_lst	*last_node;
 
-	last_node = ft_lstlast(*lst);
+	last_node = ft_listlast(*lst);
 	new_node = malloc((sizeof(t_lst)));
 	if (!new_node)
 		return ;
@@ -118,41 +118,3 @@ void	add_node(t_lst **lst, char *buff)
 	new_node->buff = buff;
 	new_node->next = NULL;
 }
-
-// int	main(void)
-// {
-// 	int		fd;
-// 	char	*s;
-
-// 	fd = open("hamada", O_RDONLY);
-// 	// get_next_line(fd);
-// 	// get_next_line(fd);
-// 	s = get_next_line(fd);
-// 	printf("%s", s);
-// 	free(s);
-// 	s = get_next_line(fd);
-// 	printf("%s", s);
-// 	free(s);
-// 	s = get_next_line(fd);
-// 	printf("%s", s);
-// 	free(s);
-// 	s = get_next_line(fd);
-// 	printf("%s", s);
-// 	free(s);
-// 	s = get_next_line(fd);
-// 	printf("%s", s);
-// 	free(s);
-// 	s = get_next_line(fd);
-// 	printf("%s", s);
-// 	free(s);
-// 	// s = get_next_line(fd);
-// 	// printf("%s", s);
-// 	// free(s);
-// 	// s = get_next_line(fd);
-// 	// printf("%s", s);
-// 	// free(s);
-// 	// while(1);
-// 	// printf("%s", get_next_line(fd));
-// 	// printf("%s", get_next_line(fd));
-// 	// printf("%s", get_next_line(fd));
-// }

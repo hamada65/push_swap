@@ -6,7 +6,7 @@
 /*   By: mel-rhay <mel-rhay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/13 18:02:01 by mel-rhay          #+#    #+#             */
-/*   Updated: 2024/01/15 21:46:43 by mel-rhay         ###   ########.fr       */
+/*   Updated: 2024/01/16 20:57:44 by mel-rhay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	sa(t_stack **a, t_stack **b)
 {
 	t_stack	*tmp;
 
+	(void)b;
 	if (ft_stack_size(*a) < 2)
 		return ;
 	tmp = *a;
@@ -39,7 +40,7 @@ void	sa(t_stack **a, t_stack **b)
 	tmp->prev = *a;
 	tmp->next = (*a)->next;
 	(*a)->next = tmp;
-	printf("sa\n");
+	ft_putstr_fd("sa\n", 1);
 }
 
 // (swap b): Swap the first 2 elements at the top of stack b.
@@ -48,6 +49,7 @@ void	sb(t_stack **a, t_stack **b)
 {
 	t_stack	*tmp;
 
+	(void)a;
 	if (ft_stack_size(*b) < 2)
 		return ;
 	tmp = *b;
@@ -56,7 +58,7 @@ void	sb(t_stack **a, t_stack **b)
 	tmp->prev = *b;
 	tmp->next = (*b)->next;
 	(*b)->next = tmp;
-	printf("sb\n");
+	ft_putstr_fd("sb\n", 1);
 }
 
 // (ss) sa and sb at the same time.
@@ -81,7 +83,7 @@ void	ss(t_stack **a, t_stack **b)
 	tmp->prev = *b;
 	tmp->next = (*b)->next;
 	(*b)->next = tmp;
-	printf("ss\n");
+	ft_putstr_fd("ss\n", 1);
 }
 
 // (push a): Take the first element at the top of b and put it at the top of a.
@@ -101,7 +103,7 @@ void	pa(t_stack **a, t_stack **b)
 	*a = tmp;
 	if ((*a)->next)
 		(*a)->next->prev = *a;
-	printf("pa\n");
+	ft_putstr_fd("pa\n", 1);
 }
 
 // (push b): Take the first element at the top of a and put it at the top of b.
@@ -122,7 +124,7 @@ void	pb(t_stack **a, t_stack **b)
 	*b = tmp;
 	if ((*b)->next)
 		(*b)->next->prev = *b;
-	printf("pb\n");
+	ft_putstr_fd("pb\n", 1);
 }
 
 // (rotate a): Shift up all elements of stack a by 1.
@@ -132,6 +134,7 @@ void	ra(t_stack **a, t_stack **b)
 {
 	t_stack	*tmp;
 
+	(void)b;
 	if (ft_stack_size(*a) < 2)
 		return ;
 	tmp = *a;
@@ -140,7 +143,7 @@ void	ra(t_stack **a, t_stack **b)
 	tmp->prev = NULL;
 	tmp->next = NULL;
 	ft_add_back(a, tmp);
-	printf("ra\n");
+	ft_putstr_fd("ra\n", 1);
 }
 
 // (rotate b): Shift up all elements of stack b by 1.
@@ -150,6 +153,7 @@ void	rb(t_stack **a, t_stack **b)
 {
 	t_stack	*tmp;
 
+	(void)a;
 	if (ft_stack_size(*b) < 2)
 		return ;
 	tmp = *b;
@@ -158,7 +162,7 @@ void	rb(t_stack **a, t_stack **b)
 	tmp->prev = NULL;
 	tmp->next = NULL;
 	ft_add_back(b, tmp);
-	printf("rb\n");
+	ft_putstr_fd("rb\n", 1);
 }
 
 // (rr) ra and rb at the same time.
@@ -182,7 +186,7 @@ void	rr(t_stack **a, t_stack **b)
 	tmp->prev = NULL;
 	tmp->next = NULL;
 	ft_add_back(b, tmp);
-	printf("rr\n");
+	ft_putstr_fd("rr\n", 1);
 }
 
 // (reverse rotate a): Shift down all elements of stack a by 1.
@@ -192,6 +196,7 @@ void	rra(t_stack **a, t_stack **b)
 	t_stack	*tmp;
 	t_stack	*second_last;
 
+	(void)b;
 	if (ft_stack_size(*a) < 2)
 		return ;
 	tmp = *a;
@@ -205,7 +210,7 @@ void	rra(t_stack **a, t_stack **b)
 	tmp->next = *a;
 	(*a)->prev = tmp;
 	*a = tmp;
-	printf("rra\n");
+	ft_putstr_fd("rra\n", 1);
 }
 
 // (reverse rotate b): Shift down all elements of stack b by 1.
@@ -215,6 +220,7 @@ void	rrb(t_stack **a, t_stack **b)
 	t_stack	*tmp;
 	t_stack	*second_last;
 
+	(void)a;
 	if (ft_stack_size(*b) < 2)
 		return ;
 	tmp = *b;
@@ -228,7 +234,7 @@ void	rrb(t_stack **a, t_stack **b)
 	tmp->next = *b;
 	(*b)->prev = tmp;
 	*b = tmp;
-	printf("rrb\n");
+	ft_putstr_fd("rrb\n", 1);
 }
 
 // rra and rrb at the same time.
@@ -263,5 +269,5 @@ void	rrr(t_stack **a, t_stack **b)
 	tmp->next = *b;
 	(*b)->prev = tmp;
 	*b = tmp;
-	printf("rrr\n");
+	ft_putstr_fd("rrr\n", 1);
 }
