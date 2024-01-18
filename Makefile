@@ -5,6 +5,8 @@ SRCS =  push_swap.c \
 		stack_sort_short.c \
 		stack_sort.c \
 		push_swap_utils2.c \
+		push_swap_utils3.c \
+		stack_sort_utils.c \
 		srcs/libft/ft_isalpha.c srcs/libft/ft_isdigit.c srcs/libft/ft_isalnum.c srcs/libft/ft_isascii.c srcs/libft/ft_isprint.c srcs/libft/ft_strlen.c \
 		srcs/libft/ft_toupper.c srcs/libft/ft_tolower.c srcs/libft/ft_strchr.c srcs/libft/ft_strrchr.c srcs/libft/ft_strncmp.c \
 		srcs/libft/ft_memcpy.c srcs/libft/ft_memmove.c srcs/libft/ft_memset.c srcs/libft/ft_memcmp.c srcs/libft/ft_memchr.c srcs/libft/ft_bzero.c \
@@ -19,6 +21,8 @@ SRCS_BONUS = bonus/args_cheker_bonus.c \
 			 bonus/checker_utils_bonus.c \
 			 bonus/functions_bonus.c \
 			 bonus/get_next_line_bonus.c \
+			 bonus/functions2_bonus.c \
+			 bonus/functions3_bonus.c \
 			 bonus/get_next_line_utils_bonus.c \
 			 srcs/libft/ft_isalpha.c srcs/libft/ft_isdigit.c srcs/libft/ft_isalnum.c srcs/libft/ft_isascii.c srcs/libft/ft_isprint.c srcs/libft/ft_strlen.c \
 			 srcs/libft/ft_toupper.c srcs/libft/ft_tolower.c srcs/libft/ft_strchr.c srcs/libft/ft_strrchr.c srcs/libft/ft_strncmp.c \
@@ -34,7 +38,7 @@ NAME_BONUS = checker
 OBJS = ${SRCS:.c=.o}
 OBJS_BONUS = ${SRCS_BONUS:.c=.o}
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -fsanitize=leak
 RM = rm -f
 
 all: ${NAME}

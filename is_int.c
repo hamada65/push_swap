@@ -6,7 +6,7 @@
 /*   By: mel-rhay <mel-rhay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/13 17:28:04 by mel-rhay          #+#    #+#             */
-/*   Updated: 2024/01/13 17:36:41 by mel-rhay         ###   ########.fr       */
+/*   Updated: 2024/01/18 04:29:17 by mel-rhay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ static int	ft_atoi_check_llong(long long result, char *str, int sign)
 
 int	is_int(char *str)
 {
-	int sign;
-	long long result;
+	int			sign;
+	long long	result;
 
 	result = 0;
 	sign = 1;
@@ -38,6 +38,8 @@ int	is_int(char *str)
 			sign = -sign;
 		str++;
 	}
+	if (!ft_isdigit(*str))
+		return (0);
 	while (*str && *str >= '0' && *str <= '9')
 	{
 		if (ft_atoi_check_llong(result, str, sign) != 2)
@@ -47,5 +49,7 @@ int	is_int(char *str)
 			return (0);
 		str++;
 	}
+	if (*str)
+		return (0);
 	return (1);
 }

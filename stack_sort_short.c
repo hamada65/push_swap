@@ -6,7 +6,7 @@
 /*   By: mel-rhay <mel-rhay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/13 21:19:23 by mel-rhay          #+#    #+#             */
-/*   Updated: 2024/01/15 17:54:23 by mel-rhay         ###   ########.fr       */
+/*   Updated: 2024/01/18 02:59:17 by mel-rhay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,20 @@ int	ft_find_min(t_stack *stack, int *min2)
 	return (min);
 }
 
+void	sort_three_and_pa(t_stack **a, t_stack **b)
+{
+	sort_three(a, b);
+	pa(a, b);
+	pa(a, b);
+	if ((*a)->data > (*a)->next->data)
+		sa(a, b);
+}
+
 void	sort_five(t_stack **a, t_stack **b)
 {
 	int		min;
 	int		min2;
 	int		found_both;
-	t_stack	*tmp;
 
 	min = ft_find_min(*a, NULL);
 	min2 = ft_find_min(*a, &min);
@@ -82,17 +90,12 @@ void	sort_five(t_stack **a, t_stack **b)
 		else
 			ra(a, b);
 	}
-	sort_three(a, b);
-	pa(a, b);
-	pa(a, b);
-	if ((*a)->data > (*a)->next->data)
-		sa(a, b);
+	sort_three_and_pa(a, b);
 }
 
 void	sort_four(t_stack **a, t_stack **b)
 {
-	int min;
-	t_stack *tmp;
+	int		min;
 
 	min = ft_find_min(*a, NULL);
 	while ((*a)->data != min)

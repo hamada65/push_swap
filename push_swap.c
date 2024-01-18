@@ -6,7 +6,7 @@
 /*   By: mel-rhay <mel-rhay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 18:50:27 by mel-rhay          #+#    #+#             */
-/*   Updated: 2024/01/16 20:06:16 by mel-rhay         ###   ########.fr       */
+/*   Updated: 2024/01/18 02:58:52 by mel-rhay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,27 @@ int	is_stack_sorted(t_stack *stack)
 	return (1);
 }
 
+void	ft_sort(t_stack **a, t_stack **b)
+{
+	int	size;
+
+	size = ft_stack_size(*a);
+	if (size == 2)
+		sa(a, b);
+	if (size == 3)
+		sort_three(a, b);
+	else if (size == 4)
+		sort_four(a, b);
+	else if (size == 5)
+		sort_five(a, b);
+	else
+		sort(a, b, size);
+}
+
 int	main(int ac, char **av)
 {
 	t_stack	*stack_a;
 	t_stack	*stack_b;
-	int		size;
 
 	stack_b = NULL;
 	if (ac >= 2)
@@ -41,22 +57,10 @@ int	main(int ac, char **av)
 			ft_clear_stack(&stack_a);
 			return (0);
 		}
-		size = ft_stack_size(stack_a);
-		if (size == 2)
-			sa(&stack_a, &stack_b);
-		if (size == 3)
-			sort_three(&stack_a, &stack_b);
-		else if (size == 4)
-			sort_four(&stack_a, &stack_b);
-		else if (size == 5)
-			sort_five(&stack_a, &stack_b);
-		else
-			sort(&stack_a, &stack_b, size);
+		ft_sort(&stack_a, &stack_b);
 		ft_clear_stack(&stack_a);
 	}
 	else
-	{
 		ft_putstr_fd("Error\n", 2);
-	}
 	return (0);
 }

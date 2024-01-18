@@ -6,7 +6,7 @@
 /*   By: mel-rhay <mel-rhay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 23:10:36 by mel-rhay          #+#    #+#             */
-/*   Updated: 2024/01/15 23:33:44 by mel-rhay         ###   ########.fr       */
+/*   Updated: 2024/01/18 05:19:08 by mel-rhay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	ft_add_back(t_stack **lst, t_stack *new);
 t_stack	*check_args(int ac, char **av);
 int		ft_stack_size(t_stack *stack);
 int		is_int(char *str);
+int					is_stack_sorted(t_stack *stack);
 void				sa(t_stack **a, t_stack **b);
 void				sb(t_stack **a, t_stack **b);
 void				ss(t_stack **a, t_stack **b);

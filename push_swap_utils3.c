@@ -1,16 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker_utils_bonus.c                              :+:      :+:    :+:   */
+/*   push_swap_utils3.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mel-rhay <mel-rhay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/15 23:21:31 by mel-rhay          #+#    #+#             */
-/*   Updated: 2024/01/18 05:11:52 by mel-rhay         ###   ########.fr       */
+/*   Created: 2024/01/15 21:46:47 by mel-rhay          #+#    #+#             */
+/*   Updated: 2024/01/18 02:21:17 by mel-rhay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "checker_bonus.h"
+#include "push_swap.h"
+
+// (push b): Take the first element at the top of a and put it at the top of b.
+// Do nothing if a is empty.
+void	pb(t_stack **a, t_stack **b)
+{
+	t_stack	*tmp;
+
+	if (!*a)
+		return ;
+	tmp = *a;
+	*a = (*a)->next;
+	tmp->next = *b;
+	*b = tmp;
+	ft_putstr_fd("pb\n", 1);
+}
+
+// (rotate a): Shift up all elements of stack a by 1.
+// The first element becomes the last one.
+void	ra(t_stack **a, t_stack **b)
+{
+	t_stack	*tmp;
+
+	(void)b;
+	if (ft_stack_size(*a) < 2)
+		return ;
+	tmp = *a;
+	*a = (*a)->next;
+	tmp->next = NULL;
+	ft_add_back(a, tmp);
+	ft_putstr_fd("ra\n", 1);
+}
 
 t_stack	*ft_nb_new(int nb)
 {
@@ -21,7 +52,6 @@ t_stack	*ft_nb_new(int nb)
 		return (NULL);
 	new->data = nb;
 	new->next = NULL;
-	new->prev = NULL;
 	return (new);
 }
 
@@ -42,7 +72,6 @@ void	ft_clear_stack(t_stack **lst)
 void	ft_add_back(t_stack **lst, t_stack *new)
 {
 	t_stack	*tmp;
-	t_stack	*prev;
 
 	if (!(*lst))
 		*lst = new;
@@ -50,53 +79,7 @@ void	ft_add_back(t_stack **lst, t_stack *new)
 	{
 		tmp = (*lst);
 		while (tmp && tmp->next)
-		{
-			prev = tmp;
 			tmp = tmp->next;
-		}
 		tmp->next = new;
-		new->prev = prev;
 	}
-}
-
-static int	ft_atoi_check_llong(long long result, char *str, int sign)
-{
-	if ((result > 922337203685477580) || (result == 922337203685477580 && (*str
-				- '0') > 7))
-	{
-		if (sign == 1)
-			return (-1);
-		else if (sign == -1)
-			return (0);
-	}
-	return (2);
-}
-
-int	is_int(char *str)
-{
-	int			sign;
-	long long	result;
-
-	result = 0;
-	sign = 1;
-	if (*str && (*str == '+' || *str == '-'))
-	{
-		if (*str == '-')
-			sign = -sign;
-		str++;
-	}
-	if (!ft_isdigit(*str))
-		return (0);
-	while (*str && *str >= '0' && *str <= '9')
-	{
-		if (ft_atoi_check_llong(result, str, sign) != 2)
-			return (0);
-		result = result * 10 + (*str - '0');
-		if ((result * sign) > 2147483647 || (result * sign) < -2147483648)
-			return (0);
-		str++;
-	}
-	if (*str)
-		return (0);
-	return (1);
 }

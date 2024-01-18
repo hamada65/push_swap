@@ -6,7 +6,7 @@
 /*   By: mel-rhay <mel-rhay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 18:57:39 by mel-rhay          #+#    #+#             */
-/*   Updated: 2024/01/15 21:56:10 by mel-rhay         ###   ########.fr       */
+/*   Updated: 2024/01/18 02:08:13 by mel-rhay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int	check_duplicates(t_stack *stack_a)
 
 void	arg_check(char *str, t_stack **a)
 {
-	int	j;
+	int		j;
 	char	**tmp;
 
 	if (ft_strlen(str) == 0)
