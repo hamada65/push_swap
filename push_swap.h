@@ -26,11 +26,10 @@ typedef struct s_stack
 
 typedef struct s_sorted
 {
-	int	*sorted_array;
-	int	start;
-	int end;
-}				t_sorted;
-
+	int				*sorted_array;
+	int				start;
+	int				end;
+}					t_sorted;
 
 t_stack				*check_args(int ac, char **av);
 int					is_int(char *str);

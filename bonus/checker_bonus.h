@@ -11,9 +11,9 @@
 /* ************************************************************************** */
 
 #ifndef CHECKER_BONUS_H
-#define CHECKER_BONUS_H
-#include "../srcs/libft/libft.h"
-#include "get_next_line_bonus.h"
+# define CHECKER_BONUS_H
+# include "../srcs/libft/libft.h"
+# include "get_next_line_bonus.h"
 
 typedef struct s_stack
 {
@@ -22,13 +22,13 @@ typedef struct s_stack
 	struct s_stack	*prev;
 }					t_stack;
 
-int		is_stack_sorted(t_stack *stack);
-t_stack	*ft_nb_new(int nb);
-void	ft_clear_stack(t_stack **lst);
-void	ft_add_back(t_stack **lst, t_stack *new);
-t_stack	*check_args(int ac, char **av);
-int		ft_stack_size(t_stack *stack);
-int		is_int(char *str);
+int					is_stack_sorted(t_stack *stack);
+t_stack				*ft_nb_new(int nb);
+void				ft_clear_stack(t_stack **lst);
+void				ft_add_back(t_stack **lst, t_stack *new);
+t_stack				*check_args(int ac, char **av);
+int					ft_stack_size(t_stack *stack);
+int					is_int(char *str);
 int					is_stack_sorted(t_stack *stack);
 void				sa(t_stack **a, t_stack **b);
 void				sb(t_stack **a, t_stack **b);
